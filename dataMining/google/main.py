@@ -11,7 +11,51 @@ import pprint
 import nltk
 import re
 from apiclient.discovery import build
-from nltk.corpus import stopwords
+from nltk.corpus import stopwords, wordnet
+from nltk.stem import WordNetLemmatizer
+from nltk.tokenize import word_tokenize
+
+def lemmatization(sentanceTokens):
+    #Lemmatization
+    lmtzr = WordNetLemmatizer()
+    
+    for i in xrange(0,len(sentanceTokens)):
+        for x in xrange(0,len(sentanceTokens[i])):
+            sentanceTokens[i][x] = lmtzr.lemmatize(sentanceTokens[i][x])
+            print sentanceTokens[i][x]
+
+    print sentanceTokens
+    return sentanceTokens
+
+def manualProcessing(word):
+    if word.endswith("ment"):
+        withoutSuffix = word[:-len('ment')]
+        word = withoutSuffix + 'er'
+    return word
+
+def additionalProcessing(sentanceTokens):
+    
+    for i in xrange(0,len(sentanceTokens)):
+        for x in xrange(0,len(sentanceTokens[i])):
+             #Lemmatization
+            lmtzr = WordNetLemmatizer()
+            sentanceTokens[i][x] = lmtzr.lemmatize(sentanceTokens[i][x])
+            
+            #Manual Processing
+            sentanceTokens[i][x] = manualProcessing(sentanceTokens[i][x])
+            
+            #print sentanceTokens[i][x]
+    
+    return sentanceTokens
+    
+
+def preprocess(text):
+    tokens = nltk.sent_tokenize(text)
+    tokens = [nltk.word_tokenize(sentence) for sentence in tokens]
+    tokens = additionalProcessing(tokens)
+    tokens = [nltk.pos_tag(word) for word in tokens]
+    
+    return tokens
 
 def processText(file, jobTitles):
     f = open(file, 'r')
@@ -30,9 +74,10 @@ def processText(file, jobTitles):
     #text = re.sub("u'$", "", text)
     
     #print(text)
-    tokens = nltk.sent_tokenize(text)
-    tokens = [nltk.word_tokenize(sentence) for sentence in tokens]
-    tokens = [nltk.pos_tag(word) for word in tokens]
+    #text = "computers programmers management"
+    
+    tokens = preprocess(text)
+    
     #print tokens
     #list: {(<NN|JJ|VB|IN|VBG>+<,>)+(<CC><NN|JJ|VB|IN|VBG>+)*}
     '''grammar = """
@@ -56,14 +101,15 @@ def processText(file, jobTitles):
                            "jobs", "professionals", "occupations", "including",
                            "like", "such", "as", "interview"]
     
-    for sentence in tokens:
         
+    for sentence in tokens:
+          
         multiName = []
         #break
         result = cp.parse(sentence)
-        
+          
         for node in result:
-                    
+                      
             name = list(" ")
             counter = 0
             if type(node) is nltk.Tree:
@@ -88,7 +134,7 @@ def processText(file, jobTitles):
                             else:
                                 #name[counter] = name[counter] + element[0] + " " + "(" + element[1] + ")" + " "
                                 name[counter] = name[counter] + element[0] + " "
-                
+                  
                 elif node.label() == 'and':
                     for element in node:
                         if element[1] == "CC":
@@ -103,19 +149,20 @@ def processText(file, jobTitles):
                             else:
                                 #name[counter] = name[counter] + element[0] + " " + "(" + element[1] + ")" + " "
                                 name[counter] = name[counter] + element[0] + " "
-                    
-                                
+ 
+                     
+                                 
             if len(name) == 1:
                 if name[0] == " " or name[0] == "":
                     continue
             if len(name) == 2:
                 if name[0] == "" and name[1] == "":
                     continue
-            
+             
             if "/" in name:
                 multiName = name.split("/")
                 print "found a multi name"
-                
+                 
             if len(multiName) > 0:
                 for additionalName in multiName:
                     print additionalName
