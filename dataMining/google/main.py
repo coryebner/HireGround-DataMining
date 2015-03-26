@@ -15,21 +15,11 @@ from nltk.corpus import stopwords, wordnet
 from nltk.stem import WordNetLemmatizer
 from nltk.tokenize import word_tokenize
 
-def lemmatization(sentanceTokens):
-    #Lemmatization
-    lmtzr = WordNetLemmatizer()
-    
-    for i in xrange(0,len(sentanceTokens)):
-        for x in xrange(0,len(sentanceTokens[i])):
-            sentanceTokens[i][x] = lmtzr.lemmatize(sentanceTokens[i][x])
-            print sentanceTokens[i][x]
-
-    print sentanceTokens
-    return sentanceTokens
-
 def manualProcessing(word):
     if word.endswith("ment"):
         withoutSuffix = word[:-len('ment')]
+        if withoutSuffix.endswith('e'):
+            withoutSuffix = withoutSuffix[:-len('e')]
         word = withoutSuffix + 'er'
     return word
 
@@ -37,7 +27,7 @@ def additionalProcessing(sentanceTokens):
     
     for i in xrange(0,len(sentanceTokens)):
         for x in xrange(0,len(sentanceTokens[i])):
-             #Lemmatization
+            #Lemmatization
             lmtzr = WordNetLemmatizer()
             sentanceTokens[i][x] = lmtzr.lemmatize(sentanceTokens[i][x])
             
@@ -52,9 +42,9 @@ def additionalProcessing(sentanceTokens):
 def preprocess(text):
     tokens = nltk.sent_tokenize(text)
     tokens = [nltk.word_tokenize(sentence) for sentence in tokens]
+    #Additional Processing
     tokens = additionalProcessing(tokens)
     tokens = [nltk.pos_tag(word) for word in tokens]
-    
     return tokens
 
 def processText(file, jobTitles):
@@ -74,7 +64,7 @@ def processText(file, jobTitles):
     #text = re.sub("u'$", "", text)
     
     #print(text)
-    #text = "computers programmers management"
+    text = "computers programmers management."
     
     tokens = preprocess(text)
     
@@ -102,11 +92,13 @@ def processText(file, jobTitles):
                            "like", "such", "as", "interview"]
     
         
-    for sentence in tokens:
+    for sentence in tokens: 
           
         multiName = []
         #break
         result = cp.parse(sentence)
+        
+        print result
           
         for node in result:
                       
