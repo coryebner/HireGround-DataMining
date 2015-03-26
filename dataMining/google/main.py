@@ -97,8 +97,6 @@ def processText(file, jobTitles):
         multiName = []
         #break
         result = cp.parse(sentence)
-        
-        print result
           
         for node in result:
                       
