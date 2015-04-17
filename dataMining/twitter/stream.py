@@ -5,8 +5,8 @@ __status__ = "Development"
 
 
 import tweepy, json, pickle
-from dataMining.settings import TWITTER_ACCESS_TOKEN, TWITTER_ACCESS_TOKEN_SECRET, TWITTER_CONSUMER_KEY, TWITTER_CONSUMER_SECRET
-from dataMining.twitter.tweet import Tweet
+from settings import TWITTER_ACCESS_TOKEN, TWITTER_ACCESS_TOKEN_SECRET, TWITTER_CONSUMER_KEY, TWITTER_CONSUMER_SECRET
+from twitter.tweet import Tweet
 
 
 class StdOutListener(tweepy.StreamListener):

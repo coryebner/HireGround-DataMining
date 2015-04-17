@@ -3,7 +3,7 @@ __version__ = "1.0.0"
 __email__ = "justinmilanovic@gmail.com"
 __status__ = "Development"
 
-from pymongo import Connection
+import pymongo
 
 class Job(object):
     

@@ -6,12 +6,12 @@ Created on Jan 20, 2015
 
 import pprint
 import nltk
-from dataMining.mongo.Job import Job
+from mongo.Job import Job
 from nltk.corpus import stopwords
 from nltk.corpus import stopwords, wordnet
 from nltk.stem import WordNetLemmatizer
-from dataMining.settings import GOOGLE_ADDITIONAL_PROCESSING, GOOGLE_MANUAL_PROCESSING, GRAMMAR, ADDITIONAL_STOP_WORDS_SKILLS, ADDITIONAL_STOP_WORDS_TITLES
-from dataMining.settings import GOOGLE_TITLE_SNIPPET_FILENAME, GOOGLE_SKILL_SNIPPET_FILENAME
+from settings import GOOGLE_ADDITIONAL_PROCESSING, GOOGLE_MANUAL_PROCESSING, GRAMMAR, ADDITIONAL_STOP_WORDS_SKILLS, ADDITIONAL_STOP_WORDS_TITLES
+from settings import GOOGLE_TITLE_SNIPPET_FILENAME, GOOGLE_SKILL_SNIPPET_FILENAME
 
 '''
 Performs manual text processing on the given word

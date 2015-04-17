@@ -6,9 +6,9 @@ __status__ = "Development"
 
 #------------------------------------------------------------------------------
 
-from dataMining.settings import STANFORD_NER, STANFORD_NER_JAR, TWITTER_REGEX, TWITTER_CUSTOM_STOPWORDS, TWITTER_CUSTOM_PHRASES_LEFT, TWITTER_CUSTOM_PHRASES_RIGHT,\
+from settings import STANFORD_NER, STANFORD_NER_JAR, TWITTER_REGEX, TWITTER_CUSTOM_STOPWORDS, TWITTER_CUSTOM_PHRASES_LEFT, TWITTER_CUSTOM_PHRASES_RIGHT,\
     TWITTER_US_STATES_2_WORD
-from dataMining.twitter.tweet import Tweet
+from twitter.tweet import Tweet
 
 import re
 

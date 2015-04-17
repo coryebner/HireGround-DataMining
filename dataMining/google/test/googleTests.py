@@ -1,4 +1,4 @@
-from dataMining.google.googleProcessing import processTitles
+from google.googleProcessing import processTitles
 import pprint
 
 def test():

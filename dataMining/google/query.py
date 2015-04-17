@@ -1,7 +1,7 @@
 from apiclient.discovery import build
 from webScraper import fullSnippet
 import re
-from dataMining.settings import GOOGLE_API_KEYS
+from settings import GOOGLE_API_KEYS
 from googleapiclient.errors import HttpError
 
 
