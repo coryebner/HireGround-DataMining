@@ -39,15 +39,6 @@ def getSnippets(response, output, links, getFullSnippet):
 		                try:
 					
 					#parsing the snippet to try an remove as much niose initially as posible
-					
-					'''
-					snippet_full=re.sub('\\t', '-', snippet_full)
-					snippet_full=re.sub('\\r', '-', snippet_full)			
-					snippet_full=re.sub('\\n', '-', snippet_full)		
-					regex = re.compile('[^a-zA-Z\s,]')
-					snippet_full=regex.sub(' ', snippet_full)
-					#snippet_full=re.sub('\_\_+', '_', snippet_full)
-					'''
 					snippetArray= snippet_full.split()
 					snippet_full = ' '.join(snippetArray)					
 					regex = re.compile('[^a-zA-Z\s,\']')
@@ -66,7 +57,7 @@ def getSnippets(response, output, links, getFullSnippet):
     
 ''' END OF getSnippets() FUNCTION '''
     
-def runTitles(initialTitle, outputFile):
+def runTitles(initialTitle, outputFile, getFullSnippet):
     #api_key = "AIzaSyCHwlWEjEcdeH1KRnmIi9fq5Dnx2JBeVRw"
     search_Engine_ID = "016745198537660285174:espiwqmbexg"
     
@@ -82,16 +73,17 @@ def runTitles(initialTitle, outputFile):
                  "\"* Information Technology professions like\""]
     
     blacklist2 = [("occupations", "including"), ("occupations", "like"), ("professions", "including"), ("professions", "like")]
-        
-    output = open(("google/output/" + outputFile + ".txt"), 'w+')
+     #this activates the full Snippet Capability
+    if(getFullSnippet ==  True):
+        output = open(("google/output/" + outputFile + "Full.txt"), 'w+')    
+    else:
+	 output = open(("google/output/" + outputFile + ".txt"), 'w+')
+
     links = open(("google/output/" + outputFile + "links.txt"), 'w+')
     
     currentAPIKey = 0;
     
-    #this activates the full Snippet Capability
-    getFullSnippet = False
-    if(getFullSnippet ==  True):
-        output = open(("output/" + outputFile + "Full.txt"), 'w+')
+   
     
     service = build("customsearch", "v1", developerKey=GOOGLE_API_KEYS[currentAPIKey])
         
@@ -138,7 +130,7 @@ def runTitles(initialTitle, outputFile):
                        
           
 
-def runSkills(initialTitle, searchTitle, outputFile):    
+def runSkills(initialTitle, searchTitle, outputFile, getFullSnippet):    
     #api_key = "AIzaSyCHwlWEjEcdeH1KRnmIi9fq5Dnx2JBeVRw"
     search_Engine_ID = "016745198537660285174:espiwqmbexg"
     
@@ -148,8 +140,10 @@ def runSkills(initialTitle, searchTitle, outputFile):
     currentAPIKey = 0;
     
     service = build("customsearch", "v1", developerKey=GOOGLE_API_KEYS[currentAPIKey])
-    getFullSnippet = False
-    output = open(("google/output/" + outputFile + ".txt"), 'w+')
+    if(getFullSnippet):
+	output = open(("google/output/" + outputFile + "Full.txt"), 'w+')
+    else: 
+	output = open(("google/output/" + outputFile + ".txt"), 'w+')
     links = open(("google/output/" + outputFile + "links.txt"), 'w+')
         
     for fm in form:

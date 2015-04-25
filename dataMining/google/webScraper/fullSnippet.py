@@ -35,22 +35,23 @@ def run(snippet, link, tolerance):
  
 	#opening the link and getting raw data
 	print "Accesing website for data..."
-	docs = [".pdf", "docx", "doc"]
-	if link in docs :
-		print "Cannot extract from structured documents such a PDFs, DOCx, DOC"
-	else:
-		read= tagScraper.remote(link, filename, False )
-	try:
-		read = read.decode('utf8')
+	try:	
+		docs = [".pdf", "docx", "doc"]
+		if link in docs :
+			print "Cannot extract from structured documents such a PDFs, DOCx, DOC"
+		else:
+			read= tagScraper.remote(link, filename, False )
+	
+			read = read.decode('utf8')
 	except Exception, e:
 		print ("unable to extract data from website")
 		return snippet
 	
-	return getSentences(read, snippetLines, snippet)
+	return getSentences(read, snippetLines, snippet, tolerance)
 
 
 #this method takes in the raw data and for every sentence the method compares it with the snippets, if the snippet is contained it returns the full sentence if not it switches to a word by word comparisons 
-def getSentences(read,snippetLines, snippet):
+def getSentences(read,snippetLines, snippet, tolerance):
 	try:    
 		#getting the sentences		
 		print "Looking for full snippet within sentences of the data returned.."

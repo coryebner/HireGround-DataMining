@@ -1,15 +1,19 @@
 from __future__ import division
 import fullSnippet
-
+import google.query
 
 linkFile = "../output/outputNewlinks.txt"
-snippetFile = "../output/outputNew.txt"
+try: 
+	f = open(linkFile)
+except IOError:
+#	query.runTitles("Software Engineering", "outputNew", false)
+#	f = open(linkFile)
 
 
-f = open(linkFile)
 links = f.readlines()
 f.close()
 
+snippetFile = "../output/outputNew.txt"
 
 f = open(snippetFile)
 snippets = f.readlines()
@@ -36,7 +40,7 @@ def test():
 		
 		snippet_full=fullSnippet.run((snippets [i])[9:], (links[i])[6:], 3)
 		docs = [".pdf", "docx", "doc"]
-		if link in docs :
+		if docs in link :
 			fail = fail-1		
 		if (len(snippet_full)> len((snippets [i])[9:])):
 			print "Found the snippet "+ ((snippets [i])[9:]) + " within: "+snippet_full

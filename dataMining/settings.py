@@ -85,3 +85,6 @@ GOOGLE_SKILL_TITLE = "software engineer"
 #Google processing titles
 #Used when processing snippets
 GOOGLE_PROCESS_TITLE = "software engineer"
+
+#Web Scraping funtionality
+GET_FULL_SNIPPET = False
