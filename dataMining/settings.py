@@ -80,11 +80,11 @@ GOOGLE_SKILL_SNIPPET_FILENAME = "softwareEngineerSkills"
 #Google query titles
 #Used to formulate queries
 GOOGLE_JOB_TITLE = "software engineer"
-GOOGLE_SKILL_TITLE = "software engineer"
+GOOGLE_SKILL_TITLE = "software engineering"
 
 #Google processing titles
 #Used when processing snippets
 GOOGLE_PROCESS_TITLE = "software engineer"
 
 #Web Scraping funtionality
-GET_FULL_SNIPPET = False
+GET_FULL_SNIPPET = True

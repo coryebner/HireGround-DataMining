@@ -345,10 +345,10 @@ def googleJobs(jobName):
     print len(jobTitles)
     #add to database
     for jt in jobTitles:
-       j = Job()
-       j.domain = "Information Technology"
-       j.title = jt
-       j.save()
+        j = Job()
+        j.domain = "Information Technology"
+        j.title = jt
+        j.save()
     
 
 #run(False, "software engineer", "output/outputNew.txt")

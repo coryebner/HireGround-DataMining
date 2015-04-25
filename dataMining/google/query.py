@@ -1,7 +1,7 @@
 from apiclient.discovery import build
 from webScraper import fullSnippet
 import re
-from settings import GOOGLE_API_KEYS
+from settings import GOOGLE_API_KEYS, GOOGLE_SEARCH_ENGINE_ID
 from googleapiclient.errors import HttpError
 
 
@@ -59,8 +59,8 @@ def getSnippets(response, output, links, getFullSnippet):
     
 def runTitles(initialTitle, outputFile, getFullSnippet):
     #api_key = "AIzaSyCHwlWEjEcdeH1KRnmIi9fq5Dnx2JBeVRw"
-    search_Engine_ID = "016745198537660285174:espiwqmbexg"
-    
+    #search_Engine_ID = "016745198537660285174:espiwqmbexg"
+    search_Engine_ID = GOOGLE_SEARCH_ENGINE_ID
     #domain = "Information Technology"
     jobSynonym = ["jobs", "occupations", "professions"]
     form = ["such as", "including", "like"]
@@ -132,8 +132,8 @@ def runTitles(initialTitle, outputFile, getFullSnippet):
 
 def runSkills(initialTitle, searchTitle, outputFile, getFullSnippet):    
     #api_key = "AIzaSyCHwlWEjEcdeH1KRnmIi9fq5Dnx2JBeVRw"
-    search_Engine_ID = "016745198537660285174:espiwqmbexg"
-    
+    #search_Engine_ID = "016745198537660285174:espiwqmbexg"
+    search_Engine_ID = GOOGLE_SEARCH_ENGINE_ID
     #domain = "Information Technology"
     form = ["such as", "including", "like"]
     
