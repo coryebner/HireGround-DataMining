@@ -1,10 +1,11 @@
 '''
 @author - Eric Kingori
-@Discription - this program will extract a full snippet from the link given the original snippet and link
+@Description - this program will extract a full snippet from the link given the original snippet and link
 @limitations - This program cannot extract snippets from pdfs, word documents, powerpointslides and etc
 @limitations - If the snippet contains majority or all of the information it will return the original snippet
 @output - If succesful it will return the entire sentence or lines where the original snippet was found, if
 unsuccesful it returns the original snippet
+@Date - Last Revised Apr. 20 2015
 '''
 from __future__ import division
 import os

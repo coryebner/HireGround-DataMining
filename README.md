@@ -18,3 +18,6 @@ python run.py -ps
 Will run the google algorithm test
 python run.py -gt
 
+Will run the Full Snippet algorithm test
+python run.py -ft
+

@@ -1,23 +1,13 @@
+'''
+@author - Eric Kingori
+@Description - this program will test the ability of full snippet to extract information from the given links
+@output - The results are displayed onto the command line
+@Date - Last Revised Apr. 24 2015
+'''
 from __future__ import division
 import fullSnippet
 import google.query
 
-linkFile = "../output/outputNewlinks.txt"
-try: 
-	f = open(linkFile)
-except IOError:
-#	query.runTitles("Software Engineering", "outputNew", false)
-#	f = open(linkFile)
-
-
-links = f.readlines()
-f.close()
-
-snippetFile = "../output/outputNew.txt"
-
-f = open(snippetFile)
-snippets = f.readlines()
-f.close()
 
 
 '''
@@ -27,10 +17,23 @@ print "opening this link "+ (links[j])[6:]
 print "Searching for this snippet:- "+ (snippets[j])[6:]		
 snippet_full=fullSnippet.run((snippets [j])[9:], (links[j])[6:], 3)
 '''
-def test():
+def snippetTest():
+	#opening the link and snippets	
+	linkFile = "google/output/outputNewlinks.txt"
+
+	f = open(linkFile)
+	links = f.readlines()
+	f.close()
+
+	snippetFile = "google/output/outputNew.txt"
+
+	f = open(snippetFile)
+	snippets = f.readlines()
+	f.close()
+	#Begining the test
 	i = 0
 	fail = 0
-	writeFile ="output/outputNewFull.txt"
+	writeFile ="google/webScraper/output/outputNewFull.txt"
 	f = open(writeFile, 'w')
 	while (i<len(links)-1):
 		print "----------------------------------------"
@@ -40,7 +43,7 @@ def test():
 		
 		snippet_full=fullSnippet.run((snippets [i])[9:], (links[i])[6:], 3)
 		docs = [".pdf", "docx", "doc"]
-		if docs in link :
+		if (links[i])[6:] in docs :
 			fail = fail-1		
 		if (len(snippet_full)> len((snippets [i])[9:])):
 			print "Found the snippet "+ ((snippets [i])[9:]) + " within: "+snippet_full
@@ -60,5 +63,5 @@ def test():
 	ratio= float(fail/i)
 	print "The percentage of failed attempts = "+ "{:.0%}".format(ratio)
 	print "The percentage of successful attempts = "+ "{:.0%}".format(float(1 - ratio))
-test()
+#snippetTest()
 

@@ -1,3 +1,9 @@
+'''
+@authors - MAthew Bahler, Cory Ebner, Eric Kingori
+@Description - This program creates the generates the appropriate queries and sends the to the GoogleAPI
+@output - Two files, one containng the snippets returned and the other contining the links
+@Date - Last Revised Apr. 24 2015
+'''
 from apiclient.discovery import build
 from webScraper import fullSnippet
 import re

@@ -1,7 +1,10 @@
 '''
 Created on Jan 20, 2015
 
-@author: Matt
+@author: Matt Bahler, Cory Ebner
+@Description: This module uses processes the snippets and extracts the relevant information
+@output: It stores the information onto the Mongo Database and displays the results on the command line
+@Date: Last Revised Apr. 12 2015
 '''
 
 import pprint
@@ -345,10 +348,10 @@ def googleJobs(jobName):
     print len(jobTitles)
     #add to database
     for jt in jobTitles:
-        j = Job()
-        j.domain = "Information Technology"
-        j.title = jt
-        j.save()
+       j = Job()
+       j.domain = "Information Technology"
+       j.title = jt
+       j.save()
     
 
 #run(False, "software engineer", "output/outputNew.txt")
